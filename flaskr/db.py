@@ -6,15 +6,16 @@ def create_table(name):
     con = sqlite3.connect(name)
     cur = con.cursor()
     cur.execute("CREATE TABLE tasks(text)")
+    con.commit()
 
-def create_task(name, text):
+def create_task(name, task):
     con = sqlite3.connect(name)
     cur = con.cursor()
-    cur.execute("INSERT INTO tasks (text) VALUES ({})".format(text))
+    cur.execute("INSERT INTO tasks VALUES ('{}')".format(task))
     con.commit()
 
 def get_tasks(name):
     con = sqlite3.connect(name)
     cur = con.cursor()
     res = cur.execute("SELECT text FROM tasks")
-    return res
+    return res.fetchall()

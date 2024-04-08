@@ -12,6 +12,7 @@ def index():
 
 @app.route("/tasks")
 def tasks():
+    print(db.get_tasks(db_name))
     return render_template("tasks.html")
 
 @app.route("/create")
@@ -20,10 +21,10 @@ def create():
 
 @app.route("/make", methods=["POST"])
 def make():
-    print(request.form.get("text"))
     if request.form.get("text") is None or request.form.get("text") == "":
         return render_template("create.html")
     else:
+        db.create_task(db_name, request.form.get("text")) 
         return render_template("tasks.html")
 
 if __name__ == "__main__":
