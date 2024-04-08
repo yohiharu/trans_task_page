@@ -1,8 +1,10 @@
 #!/usr/bin/python3
 
 from flask import Flask, render_template, request
+import db
 
 app = Flask(__name__)
+db_name = "database.db"
 
 @app.route("/")
 def index():
@@ -25,4 +27,5 @@ def make():
         return render_template("tasks.html")
 
 if __name__ == "__main__":
+    db.create_table(db_name)
     app.run(host="0.0.0.0", port=80)
