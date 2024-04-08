@@ -19,20 +19,20 @@ def tasks():
 
 @app.route("/create")
 def create():
-    return render_template("create.html")
+    return render_template("create.html", text="")
 
 @app.route("/make", methods=["POST"])
 def make():
     text = request.form.get("text")
     language = request.form.get("language")
     if text is None or language is None:
-        return render_template("/create.html")
-    elif text != "" and language in ["DE", "ZH"]:
+        return render_template("create.html")
+    elif len(text) <=30  and language in ["DE", "ZH"]:
         text = translation(text, language)
         db.create_task(db_name, text) 
         return redirect(url_for("tasks"))
     else:
-        return render_template("/create.html")
+        return render_template("create.html", text=text)
 
 if __name__ == "__main__":
     db.create_table(db_name)
