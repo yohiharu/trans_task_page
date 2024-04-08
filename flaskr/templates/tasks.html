@@ -1,4 +1,10 @@
 {%extends "base.html" %}
 {% block content %}
 <p class="alert alert-info">tasks</p>
+<h2>tasks</h2>
+<ul>
+{% for task in tasks %}
+	<li>{{ task }}</li>
+{% endfor %}
+</ul>
 {% endblock %}

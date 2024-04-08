@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 import db
 
 app = Flask(__name__)
@@ -12,8 +12,9 @@ def index():
 
 @app.route("/tasks")
 def tasks():
-    print(db.get_tasks(db_name))
-    return render_template("tasks.html")
+    tasks = [ i[0] for i in db.get_tasks(db_name)]
+    tasks.reverse()
+    return render_template("tasks.html", tasks=tasks)
 
 @app.route("/create")
 def create():
@@ -25,7 +26,7 @@ def make():
         return render_template("create.html")
     else:
         db.create_task(db_name, request.form.get("text")) 
-        return render_template("tasks.html")
+        return redirect(url_for("tasks"))
 
 if __name__ == "__main__":
     db.create_table(db_name)
