@@ -2,6 +2,7 @@
 
 from flask import Flask, render_template, request, redirect, url_for
 import db
+from api.api import translation
 
 app = Flask(__name__)
 db_name = "database.db"
@@ -25,7 +26,8 @@ def make():
     if request.form.get("text") is None or request.form.get("text") == "":
         return render_template("create.html")
     else:
-        db.create_task(db_name, request.form.get("text")) 
+        text = translation(request.form.get("text"), "ZH")
+        db.create_task(db_name, text) 
         return redirect(url_for("tasks"))
 
 if __name__ == "__main__":

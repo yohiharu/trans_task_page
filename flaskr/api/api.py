@@ -2,13 +2,13 @@
 
 import requests
 
-from get_key import return_apikey
+from api.get_key import return_apikey
 
 API_KEY = return_apikey()
 
-def translation(key, text, target_lang):
+def translation(text, target_lang):
     data = {
-            'auth_key' : key,
+            'auth_key' : API_KEY,
             'text' : text,
             'source_lang' : "JA",
             "target_lang": target_lang
