@@ -26,7 +26,7 @@ def make():
     text = request.form.get("text")
     language = request.form.get("language")
     if text is None or language is None:
-        return render_template("create.html")
+        return render_template("create.html", text="")
     elif len(text) <=30  and language in ["DE", "ZH"]:
         text = translation(text, language)
         db.create_task(db_name, text) 
