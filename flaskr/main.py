@@ -23,12 +23,16 @@ def create():
 
 @app.route("/make", methods=["POST"])
 def make():
-    if request.form.get("text") is None or request.form.get("text") == "":
-        return render_template("create.html")
-    else:
-        text = translation(request.form.get("text"), "ZH")
+    text = request.form.get("text")
+    language = request.form.get("language")
+    if text is None or language is None:
+        return render_template("/create.html")
+    elif text != "" and language in ["DE", "ZH"]:
+        text = translation(text, language)
         db.create_task(db_name, text) 
         return redirect(url_for("tasks"))
+    else:
+        return render_template("/create.html")
 
 if __name__ == "__main__":
     db.create_table(db_name)
