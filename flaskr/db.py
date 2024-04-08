@@ -5,7 +5,7 @@ import sqlite3
 def create_table(name):
     con = sqlite3.connect(name)
     cur = con.cursor()
-    cur.execute("CREATE TABLE tasks(text)")
+    cur.execute("CREATE TABLE IF NOT EXISTS tasks(text)")
     con.commit()
 
 def create_task(name, task):

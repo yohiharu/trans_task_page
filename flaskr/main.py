@@ -12,7 +12,7 @@ def index():
 
 @app.route("/tasks")
 def tasks():
-    tasks = [ i[0] for i in db.get_tasks(db_name)]
+    tasks = [ i[0] for i in db.get_tasks(db_name) ]
     tasks.reverse()
     return render_template("tasks.html", tasks=tasks)
 
