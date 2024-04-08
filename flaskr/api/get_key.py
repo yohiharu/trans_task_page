@@ -9,7 +9,3 @@ def return_apikey():
     load_dotenv(dotenv_path)
     API_KEY = os.environ.get("API_KEY")
     return API_KEY
-
-if __name__ ==  "__main__":
-    output = return_apikey()
-    print(output)
