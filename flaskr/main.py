@@ -13,7 +13,7 @@ def index():
 
 @app.route("/tasks")
 def tasks():
-    tasks = [ i[0] for i in db.get_tasks(db_name) ]
+    tasks = db.get_tasks(db_name)
     tasks.reverse()
     return render_template("tasks.html", tasks=tasks)
 
@@ -33,6 +33,11 @@ def make():
         return redirect(url_for("tasks"))
     else:
         return render_template("create.html", text=text)
+
+@app.route("/destroy/<int:task_id>")
+def destroy(task_id):
+    db.destroy(db_name, task_id)
+    return redirect(url_for("tasks"))
 
 if __name__ == "__main__":
     db.create_table(db_name)

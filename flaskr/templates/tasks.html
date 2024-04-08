@@ -4,7 +4,7 @@
 <h2>tasks</h2>
 <ul>
 {% for task in tasks %}
-	<li>{{ task }}</li>
+<li><a href="/destroy/{{ task[1] }}">{{ task[0] }}</a></li>
 {% endfor %}
 </ul>
 {% endblock %}
