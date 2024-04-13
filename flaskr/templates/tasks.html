@@ -2,9 +2,9 @@
 {% block content %}
 <p class="alert alert-info">tasks</p>
 <h2>tasks</h2>
-<ul class="list-group">
+<div class="list-group">
 {% for task in tasks %}
-<li class="list-group-item"><a href="/destroy/{{ task[1] }}">{{ task[0] }}</a></li>
+<a class="list-group-item list-group-item-action" href="/destroy/{{ task[1] }}">{{ task[0] }}</a>
 {% endfor %}
-</ul>
+</div>
 {% endblock %}
