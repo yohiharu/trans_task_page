@@ -1,0 +1,14 @@
+.question-box{
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	background-color: blue;
+	position: fixed;
+	z-index: 1;
+}
+.yes-button{
+	width: 30vw;
+	height: 30vw;
+	padding: 0;
+	border: 0;
+}
