@@ -3,4 +3,3 @@ $(function(){
 		$('.question-box').hide();
 	});
 });
-
